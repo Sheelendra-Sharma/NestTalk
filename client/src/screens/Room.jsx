@@ -110,36 +110,94 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div>
-      <h1>Room Page</h1>
-      <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button onClick={sendStreams}>Send Stream</button>}
-      {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
-      {myStream && (
-        <>
-          <h1>My Stream</h1>
-          <ReactPlayer
-            playing
-            muted
-            height="300px"
-            width="400px"
-            url={myStream}
-          />
-        </>
-      )}
-      {remoteStream && (
-        <>
-          <h1>Remote Stream</h1>
-          <ReactPlayer
-            playing
-            muted
-            height="300px"
-            width="400px"
-            url={remoteStream}
-          />
-        </>
-      )}
+    // <div>
+    //   <h1>Room Page</h1>
+    //   <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
+    //   {myStream && <button onClick={sendStreams}>Send Stream</button>}
+    //   {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
+    //   {myStream && (
+    //     <>
+    //       <h1>My Stream</h1>
+    //       <ReactPlayer
+    //         playing
+    //         muted
+    //         height="300px"
+    //         width="400px"
+    //         url={myStream}
+    //       />
+    //     </>
+    //   )}
+    //   {remoteStream && (
+    //     <>
+    //       <h1>Remote Stream</h1>
+    //       <ReactPlayer
+    //         playing
+    //         muted
+    //         height="300px"
+    //         width="400px"
+    //         url={remoteStream}
+    //       />
+    //     </>
+    //   )}
+    // </div>
+    <div className="h-screen bg-blue-600">
+  <div className="grid h-[40%] justify-center">
+    <h1 className="text-3xl font-bold text-white">Room Page</h1>
+      <h2 className="text-xl text-white">
+        {remoteSocketId ? "Connected" : "No one in room"}
+      </h2>
+
+    <div className="grid ">
+    {remoteSocketId &&
+      <button 
+        className="rounded-full bg-white font-medium text-black m-2 "
+        onClick={handleCallUser}        
+      >Call
+      </button>}
+
+      {myStream &&
+      <button className="rounded-full bg-white font-medium text-black m-2"
+      onClick={sendStreams}>
+        Send Stream
+      </button>}
     </div>
+  </div>
+  <div className="flex h-[60%] w-full justify-between p-6 ">
+
+  {myStream && (
+         <>
+            <div>
+                <h3 className="text-white text-center font-medium">My Stream</h3>
+              <ReactPlayer
+                playing
+                muted
+                className="h-48 w-48 rounded-2xl mt-4 bg-white "
+                height="300px"
+                width="400px"
+                url={myStream}
+              />
+            </div>
+         </>
+       )}
+  {remoteStream && (
+         <>
+            <div>
+                <h3 className="text-white text-center font-medium">Remote Stream</h3>
+              <ReactPlayer
+                playing
+                muted
+                className="h-48 w-48 rounded-2xl mt-4 bg-white"
+                height="300px"
+                width="400px"
+                url={remoteStream}
+              />
+            </div>
+         </>
+       )}
+      
+  </div>
+</div>
+
   );
 };
 
